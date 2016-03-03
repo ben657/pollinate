@@ -4,26 +4,34 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <title>Pollinate - Template your base files and generate them from Git(Hub).</title>
 
-  <meta name="author" content="{{ site.author.name }}">
+  <meta name="author" content="EverySquare">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="{{ site.description }}">
+  <meta name="description" content="Pollinate - Template your base files and generate them from Git(Hub).">
 
   <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet" type="text/css">
   <link href="http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic" rel="stylesheet" type="text/css">
 
-  <link rel="canonical" href="{{ site.url }}">
-  <link rel="stylesheet" href="/css/c.css" type="text/css">
   <link rel="stylesheet" href="/css/github-markdown.css" type="text/css">
-  <script src="/js/j.js"></script>
+
+  <style>
+      .markdown-body {
+          margin: 40px auto;
+          max-width: 900px;
+      }
+  </style>
 </head>
 <body>
-<div class="bg-very-light-gray py4 px3">
-  <div class="markdown-body">
-    {{ content }}
-  </div>
-</div>
+  <div class="markdown-body"></div>
+  <script src="https://code.jquery.com/jquery-2.2.1.js"></script>
+  <script src="https://cdn.jsdelivr.net/remarkable/1.6.2/remarkable.min.js"></script>
+  <script>
+      $.get('https://raw.githubusercontent.com/everysquare/pollinate/master/README.md', function(data) {
+        var md = new Remarkable();
+        $('.markdown-body').html(md.render(data))
+      })
+  </script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
